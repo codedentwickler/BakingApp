@@ -1,12 +1,16 @@
 package com.example.codedentwickler.bakingapp.presentation.recipe_list;
 
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.codedentwickler.bakingapp.R;
+import com.example.codedentwickler.bakingapp.customview.ProportionalImageView;
 import com.example.codedentwickler.bakingapp.data.model.Recipe;
 
 import java.util.List;
@@ -25,7 +29,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
     private final OnItemClickListener mItemClickListener;
     private List<Recipe> recipes;
 
-    public RecipeAdapter(List<Recipe> recipes, OnItemClickListener mItemClickListener) {
+    RecipeAdapter(List<Recipe> recipes, OnItemClickListener mItemClickListener) {
         this.mItemClickListener = mItemClickListener;
         setRecipes(recipes);
     }
@@ -48,6 +52,9 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
+        if (recipes == null) {
+            return;
+        }
 
         holder.bind(recipes.get(position), mItemClickListener);
     }
@@ -63,14 +70,27 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
 
         @BindView(R.id.name)
         TextView nameTextView;
+        @BindView(R.id.image_item)
+        ProportionalImageView imageView;
 
         ViewHolder(View itemView) {
             super(itemView);
-            ButterKnife.bind(itemView);
 
+            ButterKnife.bind(this,itemView);
         }
 
-        void bind(Recipe recipe, OnItemClickListener itemClickListener) {
+        void bind(final Recipe recipe,final OnItemClickListener itemClickListener) {
+
+            Uri uri = (Uri.parse("file:///android_asset")).buildUpon()
+                    .appendEncodedPath(recipe.getImage()).build();
+
+            Glide.with(itemView.getContext())
+                    .load(uri)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .fitCenter()
+                    .into(imageView);
+
+            nameTextView.setText(recipe.getName());
 
             itemView.setOnClickListener(v -> itemClickListener.onItemClick(recipe));
         }

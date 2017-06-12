@@ -1,14 +1,18 @@
 
 package com.example.codedentwickler.bakingapp.data.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Step {
+public class Step implements Parcelable
+{
 
     @SerializedName("id")
     @Expose
-    private int id;
+    private Integer id;
     @SerializedName("shortDescription")
     @Expose
     private String shortDescription;
@@ -21,6 +25,28 @@ public class Step {
     @SerializedName("thumbnailURL")
     @Expose
     private String thumbnailURL;
+    public final static Creator<Step> CREATOR = new Creator<Step>() {
+
+
+        @SuppressWarnings({
+            "unchecked"
+        })
+        public Step createFromParcel(Parcel in) {
+            Step instance = new Step();
+            instance.id = ((Integer) in.readValue((Integer.class.getClassLoader())));
+            instance.shortDescription = ((String) in.readValue((String.class.getClassLoader())));
+            instance.description = ((String) in.readValue((String.class.getClassLoader())));
+            instance.videoURL = ((String) in.readValue((String.class.getClassLoader())));
+            instance.thumbnailURL = ((String) in.readValue((String.class.getClassLoader())));
+            return instance;
+        }
+
+        public Step[] newArray(int size) {
+            return (new Step[size]);
+        }
+
+    }
+    ;
 
     /**
      * No args constructor for use in serialization
@@ -37,7 +63,7 @@ public class Step {
      * @param videoURL
      * @param thumbnailURL
      */
-    public Step(int id, String shortDescription, String description, String videoURL, String thumbnailURL) {
+    public Step(Integer id, String shortDescription, String description, String videoURL, String thumbnailURL) {
         super();
         this.id = id;
         this.shortDescription = shortDescription;
@@ -46,11 +72,11 @@ public class Step {
         this.thumbnailURL = thumbnailURL;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -86,4 +112,26 @@ public class Step {
         this.thumbnailURL = thumbnailURL;
     }
 
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeValue(id);
+        dest.writeValue(shortDescription);
+        dest.writeValue(description);
+        dest.writeValue(videoURL);
+        dest.writeValue(thumbnailURL);
+    }
+
+    public int describeContents() {
+        return  0;
+    }
+
+    @Override
+    public String toString() {
+        return "Step{" +
+                "id=" + id +
+                ", shortDescription='" + shortDescription + '\'' +
+                ", description='" + description + '\'' +
+                ", videoURL='" + videoURL + '\'' +
+                ", thumbnailURL='" + thumbnailURL + '\'' +
+                '}';
+    }
 }

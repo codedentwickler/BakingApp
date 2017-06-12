@@ -1,31 +1,59 @@
 
 package com.example.codedentwickler.bakingapp.data.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class Recipe {
+public class Recipe implements Parcelable
+{
 
     @SerializedName("id")
     @Expose
-    private int id;
+    private Integer id;
     @SerializedName("name")
     @Expose
     private String name;
     @SerializedName("ingredients")
     @Expose
-    private List<Ingredient> ingredients = null;
+    private List<Ingredient> ingredients = new ArrayList<>();
     @SerializedName("steps")
     @Expose
-    private List<Step> steps = null;
+    private List<Step> steps = new ArrayList<>();
     @SerializedName("servings")
     @Expose
-    private int servings;
+    private Integer servings;
     @SerializedName("image")
     @Expose
     private String image;
+    public final static Creator<Recipe> CREATOR = new Creator<Recipe>() {
+
+
+        @SuppressWarnings({
+            "unchecked"
+        })
+        public Recipe createFromParcel(Parcel in) {
+            Recipe instance = new Recipe();
+            instance.id = ((Integer) in.readValue((Integer.class.getClassLoader())));
+            instance.name = ((String) in.readValue((String.class.getClassLoader())));
+            in.readList(instance.ingredients, (Ingredient.class.getClassLoader()));
+            in.readList(instance.steps, (Step.class.getClassLoader()));
+            instance.servings = ((Integer) in.readValue((Integer.class.getClassLoader())));
+            instance.image = ((String) in.readValue((String.class.getClassLoader())));
+            return instance;
+        }
+
+        public Recipe[] newArray(int size) {
+            return (new Recipe[size]);
+        }
+
+    }
+    ;
 
     /**
      * No args constructor for use in serialization
@@ -43,7 +71,7 @@ public class Recipe {
      * @param image
      * @param steps
      */
-    public Recipe(int id, String name, List<Ingredient> ingredients, List<Step> steps, int servings, String image) {
+    public Recipe(Integer id, String name, List<Ingredient> ingredients, List<Step> steps, Integer servings, String image) {
         super();
         this.id = id;
         this.name = name;
@@ -53,11 +81,11 @@ public class Recipe {
         this.image = image;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -85,11 +113,11 @@ public class Recipe {
         this.steps = steps;
     }
 
-    public int getServings() {
+    public Integer getServings() {
         return servings;
     }
 
-    public void setServings(int servings) {
+    public void setServings(Integer servings) {
         this.servings = servings;
     }
 
@@ -101,4 +129,28 @@ public class Recipe {
         this.image = image;
     }
 
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeValue(id);
+        dest.writeValue(name);
+        dest.writeList(ingredients);
+        dest.writeList(steps);
+        dest.writeValue(servings);
+        dest.writeValue(image);
+    }
+
+    public int describeContents() {
+        return  0;
+    }
+
+    @Override
+    public String toString() {
+        return "Recipe{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", ingredients=" + ingredients +
+                ", steps=" + steps +
+                ", servings=" + servings +
+                ", image='" + image + '\'' +
+                '}';
+    }
 }

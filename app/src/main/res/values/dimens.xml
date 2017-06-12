@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="list_item_height">128dp</dimen>
+    <dimen name="list_item_height">dp</dimen>
+    <dimen name="cardview_text">24dp</dimen>
+    <dimen name="cardview_elevation">8dp</dimen>
+    <dimen name="divider_padding">2dp</dimen>
+    <dimen name="cardview_margin">4dp</dimen>
 </resources>
