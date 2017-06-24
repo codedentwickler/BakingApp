@@ -5,12 +5,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.codedentwickler.bakingapp.R;
-import com.example.codedentwickler.bakingapp.customview.ProportionalImageView;
 import com.example.codedentwickler.bakingapp.data.model.Recipe;
 
 import java.util.List;
@@ -24,12 +24,12 @@ import static com.google.common.base.Preconditions.checkNotNull;
  * Created by codedentwickler on 6/9/17.
  */
 
-public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder> {
+public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.ViewHolder> {
 
     private final OnItemClickListener mItemClickListener;
     private List<Recipe> recipes;
 
-    RecipeAdapter(List<Recipe> recipes, OnItemClickListener mItemClickListener) {
+    RecipeListAdapter(List<Recipe> recipes, OnItemClickListener mItemClickListener) {
         this.mItemClickListener = mItemClickListener;
         setRecipes(recipes);
     }
@@ -68,10 +68,14 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
 
     static class ViewHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.name)
+        @BindView(R.id.list_recipe_image)
+        ImageView iconImageView;
+
+        @BindView(R.id.list_recipe_name)
         TextView nameTextView;
-        @BindView(R.id.image_item)
-        ProportionalImageView imageView;
+
+        @BindView(R.id.list_recipe_servings)
+                TextView servingsTextView;
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -87,16 +91,18 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
             Glide.with(itemView.getContext())
                     .load(uri)
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .fitCenter()
-                    .into(imageView);
+                    .into(iconImageView);
+
+            String servings = itemView.getContext().getString(R.string.recipe_list_servings_text,recipe.getServings());
 
             nameTextView.setText(recipe.getName());
+            servingsTextView.setText(servings);
 
-            itemView.setOnClickListener(v -> itemClickListener.onItemClick(recipe));
+            itemView.setOnClickListener(v -> itemClickListener.onRecipeClicked(recipe));
         }
     }
 
     interface OnItemClickListener {
-        void onItemClick(Recipe recipe);
+        void onRecipeClicked(Recipe recipe);
     }
 }

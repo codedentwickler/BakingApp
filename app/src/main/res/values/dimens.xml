@@ -1,8 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="list_item_height">dp</dimen>
+    <dimen name="list_item_height">208dp</dimen>
     <dimen name="cardview_text">24dp</dimen>
     <dimen name="cardview_elevation">8dp</dimen>
     <dimen name="divider_padding">2dp</dimen>
     <dimen name="cardview_margin">4dp</dimen>
+    <dimen name="list_item_margin">4dp</dimen>
+
+    <!-- Misc -->
+    <dimen name="cards_gutter_half">4dp</dimen>
+
+    <!-- Recipe Step Details -->
+    <dimen name="recipe_step_image_height">150dp</dimen>
+
+    <!--Widget-->
+    <dimen name="widget_default_height">180dp</dimen>
+    <dimen name="widget_default_width">250dp</dimen>
+    <dimen name="widget_default_resize_width">180dp</dimen>
+    <dimen name="widget_default_resize_height">110dp</dimen>
+    <dimen name="widget_padding">4dp</dimen>
+
 </resources>

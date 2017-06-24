@@ -1,17 +1,34 @@
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name">BakingApp</string>
     <string name="dummy_name">Nutella Pie</string>
     <string name="undo">Undo</string>
     <string name="some_error">err</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="ingredient">Recipe Ingredient</string>
     <string name="video_uri">https://d17h27t6h515a5.cloudfront.net/topher/2017/April/58ffd974_-intro-creampie/-intro-creampie.mp4</string>
 
     <string name="media_url_mp3">http://storage.googleapis.com/exoplayer-test-media-0/play.mp3</string>
     <string name="media_url_mp4">http://download.blender.org/peach/bigbuckbunny_movies/BigBuckBunny_320x180.mp4</string>
     <string name="media_url_dash"><![CDATA[http://www.youtube.com/api/manifest/dash/id/bf5bb2419360daf1/source/youtube?as=fmp4_audio_clear,fmp4_sd_hd_clear&sparams=ip,ipbits,expire,source,id,as&ip=0.0.0.0&ipbits=0&expire=19000000000&signature=51AF5F39AB0CEC3E5497CD9C900EBFEAECCCB5C7.8506521BFC350652163895D4C26DEE124209AA9E&key=ik0]]></string>
     <string name="recipe_image_desc">Recipe Image Description</string>
+    <string name="step">Step 1</string>
 
+    <string name="loading_data_error">Requested data not found in database</string>
+
+    <string name="recipe_step_tab_label">Step: <xliff:g id="count">%d</xliff:g></string>
+
+    <string name="recipe_list_servings_text">Servings: %d </string>
+
+    <string name="ingredients_header"><b>List Of Ingredients :</b></string>
+
+    <string name="ingredient_line" translatable="false">
+
+    <xliff:g id="bullet">\u2022</xliff:g> <xliff:g id="name">%s</xliff:g>
+    (<xliff:g id="quantity">%s</xliff:g> <xliff:g id="measure">%s</xliff:g>)
+  </string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

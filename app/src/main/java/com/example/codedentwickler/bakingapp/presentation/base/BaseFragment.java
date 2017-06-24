@@ -2,12 +2,10 @@ package com.example.codedentwickler.bakingapp.presentation.base;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
@@ -19,26 +17,21 @@ import com.example.codedentwickler.bakingapp.utils.NetworkUtils;
 import butterknife.Unbinder;
 
 /**
- * Created by codedentwickler on 5/24/17.
+ * Created by codedentwickler on 6/21/17.
  */
 
-public abstract class BaseActivity extends AppCompatActivity implements MvpView {
+public class BaseFragment extends Fragment implements MvpView {
 
     private Unbinder mUnBinder;
     private ProgressDialog mProgressDialog;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
     public void hideKeyboard() {
 
-        View view = this.getCurrentFocus();
+        View view = getActivity().getCurrentFocus();
         if (view != null) {
             InputMethodManager imm = (InputMethodManager)
-                    getSystemService(Context.INPUT_METHOD_SERVICE);
+                    getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
     }
@@ -46,7 +39,7 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView 
     @Override
     public void showLoading() {
         hideLoading();
-        mProgressDialog = CommonUtils.showLoadingDialog(this);
+        mProgressDialog = CommonUtils.showLoadingDialog(this.getActivity());
     }
 
     @Override
@@ -66,12 +59,12 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView 
     }
 
     private void showSnackBar(String message) {
-        Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content),
+        Snackbar snackbar = Snackbar.make(getActivity().findViewById(android.R.id.content),
                 message, Snackbar.LENGTH_SHORT);
         View sbView = snackbar.getView();
         TextView textView = (TextView) sbView
                 .findViewById(android.support.design.R.id.snackbar_text);
-        textView.setTextColor(ContextCompat.getColor(this, android.R.color.white));
+        textView.setTextColor(ContextCompat.getColor(this.getActivity(), android.R.color.white));
         snackbar.show();
     }
 
@@ -81,8 +74,13 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView 
     }
 
     @Override
+    public void showSnackBarMessage(String message) {
+        showSnackBar(message);
+    }
+
+    @Override
     public boolean isNetworkConnected() {
-        return NetworkUtils.isNetworkConnected(getApplicationContext());
+        return NetworkUtils.isNetworkConnected(getActivity());
     }
 
     protected void setUnBinder(Unbinder unBinder) {
@@ -90,11 +88,10 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView 
     }
 
     @Override
-    protected void onDestroy() {
-
+    public void onDestroyView() {
         if (mUnBinder != null) {
             mUnBinder.unbind();
         }
-        super.onDestroy();
+        super.onDestroyView();
     }
 }

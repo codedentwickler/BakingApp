@@ -16,6 +16,7 @@ public interface MvpView {
 
     void hideLoading();
 
+
     void onError(@StringRes int resId);
 
     void showSnackBarMessage(String message);

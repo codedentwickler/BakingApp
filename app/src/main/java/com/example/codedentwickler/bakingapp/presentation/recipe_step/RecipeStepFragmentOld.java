@@ -1,4 +1,4 @@
-package com.example.codedentwickler.bakingapp.presentation.recipe_video;
+package com.example.codedentwickler.bakingapp.presentation.recipe_step;
 
 
 import android.annotation.SuppressLint;
@@ -24,17 +24,15 @@ import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.Timeline;
 import com.google.android.exoplayer2.audio.AudioRendererEventListener;
 import com.google.android.exoplayer2.decoder.DecoderCounters;
+import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory;
+import com.google.android.exoplayer2.source.ExtractorMediaSource;
 import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.source.TrackGroupArray;
-import com.google.android.exoplayer2.source.dash.DashChunkSource;
-import com.google.android.exoplayer2.source.dash.DashMediaSource;
-import com.google.android.exoplayer2.source.dash.DefaultDashChunkSource;
 import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection;
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
 import com.google.android.exoplayer2.trackselection.TrackSelection;
 import com.google.android.exoplayer2.trackselection.TrackSelectionArray;
 import com.google.android.exoplayer2.ui.SimpleExoPlayerView;
-import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
 import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory;
 import com.google.android.exoplayer2.util.Util;
@@ -48,10 +46,11 @@ import timber.log.Timber;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class RecipeVideoFragment extends Fragment {
+public class RecipeStepFragmentOld extends Fragment {
 
     @BindView(R.id.video_view)
     SimpleExoPlayerView mPlayerView;
+
     private SimpleExoPlayer mExoPlayer;
     private boolean playWhenReady;
     private int currentWindow;
@@ -59,19 +58,18 @@ public class RecipeVideoFragment extends Fragment {
 
     private ComponentListener componentListener;
 
-
     private static final DefaultBandwidthMeter BANDWIDTH_METER =
             new DefaultBandwidthMeter();
     private Recipe mCurrentRecipe;
 
 
-    public RecipeVideoFragment() {
+    public RecipeStepFragmentOld() {
         // Required empty public constructor
     }
 
-    public static RecipeVideoFragment newInstance(Bundle bundle) {
+    public static RecipeStepFragmentOld newInstance(Bundle bundle) {
 
-        RecipeVideoFragment videoFragment = new RecipeVideoFragment();
+        RecipeStepFragmentOld videoFragment = new RecipeStepFragmentOld();
         videoFragment.setArguments(bundle);
         return videoFragment;
     }
@@ -82,7 +80,7 @@ public class RecipeVideoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_recipe_video, container, false);
+        View view = inflater.inflate(R.layout.fragment_recipe_step, container, false);
         componentListener = new ComponentListener();
 
         mUnbinder = ButterKnife.bind(this, view);
@@ -91,10 +89,9 @@ public class RecipeVideoFragment extends Fragment {
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
-        mCurrentRecipe = getArguments().getParcelable("RECIPE");
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mCurrentRecipe = getArguments().getParcelable(RecipeStepActivity.RECIPE_KEY);
     }
 
     private void initializePlayer() {
@@ -121,13 +118,9 @@ public class RecipeVideoFragment extends Fragment {
     }
 
     private MediaSource buildMediaSource(Uri uri) {
-        DataSource.Factory dataSourceFactory =
-                new DefaultHttpDataSourceFactory("ua", BANDWIDTH_METER);
-        DashChunkSource.Factory dashChunkSourceFactory =
-                new DefaultDashChunkSource.Factory(dataSourceFactory);
-
-        return new DashMediaSource(uri, dataSourceFactory,
-                dashChunkSourceFactory, null, null);
+        return new ExtractorMediaSource(uri,
+                new DefaultHttpDataSourceFactory("ua"),
+                new DefaultExtractorsFactory(), null, null);
     }
 
     @Override
@@ -137,7 +130,6 @@ public class RecipeVideoFragment extends Fragment {
             initializePlayer();
         }
     }
-
     @Override
     public void onResume() {
         super.onResume();
@@ -235,7 +227,7 @@ public class RecipeVideoFragment extends Fragment {
 
         @Override
         public void onPlayerError(ExoPlaybackException e) {
-
+            Timber.e(e);
         }
 
         @Override

@@ -23,6 +23,6 @@ public interface RecipeListContract {
 
         void loadRecipes();
 
-        void navigateToRecipeDetails(Recipe recipe);
+        void navigateToRecipeSteps(Recipe recipe);
     }
 }

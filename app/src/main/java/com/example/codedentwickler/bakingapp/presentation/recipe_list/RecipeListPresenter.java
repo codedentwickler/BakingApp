@@ -20,7 +20,7 @@ public class RecipeListPresenter extends BasePresenter<RecipeListContract.View>
     private final RecipeRepo mRecipeRepo;
     private final BaseSchedulerProvider mSchedulerProvider;
 
-    public RecipeListPresenter(RecipeRepo mRecipeRepo, BaseSchedulerProvider mSchedulerProvider) {
+    RecipeListPresenter(RecipeRepo mRecipeRepo, BaseSchedulerProvider mSchedulerProvider) {
         this.mRecipeRepo = mRecipeRepo;
         this.mSchedulerProvider = mSchedulerProvider;
     }
@@ -36,9 +36,7 @@ public class RecipeListPresenter extends BasePresenter<RecipeListContract.View>
                 .observeOn(mSchedulerProvider.ui())
                 .subscribe(new Subscriber<List<Recipe>>() {
                     @Override
-                    public void onCompleted() {
-
-                    }
+                    public void onCompleted() {}
 
                     @Override
                     public void onError(Throwable e) {
@@ -58,8 +56,9 @@ public class RecipeListPresenter extends BasePresenter<RecipeListContract.View>
     }
 
     @Override
-    public void navigateToRecipeDetails(Recipe recipe) {
+    public void navigateToRecipeSteps(Recipe recipe) {
         getView().showToRecipeDetails(recipe);
-
     }
+
+
 }

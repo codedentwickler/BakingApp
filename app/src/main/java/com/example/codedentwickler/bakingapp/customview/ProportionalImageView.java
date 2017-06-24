@@ -5,7 +5,7 @@ import android.util.AttributeSet;
 
 public class ProportionalImageView extends android.support.v7.widget.AppCompatImageView {
 
-    private static final float ASPECT_RATIO = 1.5f;
+    private static final float ASPECT_RATIO = 1.2f;
 
     public ProportionalImageView(Context context) {
         super(context);
