@@ -36,7 +36,7 @@
                 android:layout_height="@dimen/recipe_step_image_height"
                 android:scaleType="centerCrop"
                 tools:ignore="ContentDescription"
-                tools:src="@drawable/dummy_recipe_preview"/>
+                tools:src="@drawable/widget_preview"/>
 
             <TextView
                 android:id="@+id/recipe_step_desc"

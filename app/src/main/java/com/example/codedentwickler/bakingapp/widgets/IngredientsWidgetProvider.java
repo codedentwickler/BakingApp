@@ -29,17 +29,9 @@ public class IngredientsWidgetProvider extends AppWidgetProvider {
         String formattedIngredients = sharedPreferences.
                 getString(context.getString(R.string.pref_recipe_ingredients),"");
 
-//
-//        Intent intent = new Intent(context, WidgetIntentService.class);
-//        // Add the app widget ID to the intent extras.
-//        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
-//        intent.setData(Uri.parse(intent.toUri(Intent.URI_INTENT_SCHEME)));
-
         views.setTextViewText(R.id.widget_recipe_name,recipeName);
         views.setTextViewText(R.id.widget_recipe_ingredients,formattedIngredients );
 
-        // Set up the RemoteViews object to use a RemoteViews adapter
-//        views.setRemoteAdapter(R.id.widget_list, intent);
 
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views);

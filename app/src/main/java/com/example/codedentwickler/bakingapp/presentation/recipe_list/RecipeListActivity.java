@@ -100,6 +100,11 @@ public class RecipeListActivity extends BaseActivity
         mPresenter.loadRecipes();
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        showSnackBarMessage(getString(R.string.add_widget_message));
+    }
 
     private void setUpRecipeRecycler() {
 

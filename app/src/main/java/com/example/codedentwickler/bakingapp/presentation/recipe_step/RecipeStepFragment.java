@@ -87,7 +87,7 @@ public class RecipeStepFragment extends BaseFragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_recipe_step2, container, false);
+        View view = inflater.inflate(R.layout.fragment_recipe_step, container, false);
 
         setUnBinder(ButterKnife.bind(this, view));
 

@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/material_color_white"
     android:orientation="vertical">
 
     <TextView
@@ -21,6 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textStyle="bold"
+        android:textColor="@color/material_color_black"
         android:paddingTop="@dimen/material_card_title_block_large_padding_top"
         android:paddingBottom="@dimen/material_card_title_block_large_padding_bottom"
         android:paddingStart="@dimen/material_card_title_block_padding_horizontal"

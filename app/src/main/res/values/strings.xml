@@ -4,14 +4,9 @@
     <string name="undo">Undo</string>
     <string name="some_error">err</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="ingredient">Recipe Ingredient</string>
-    <string name="video_uri">https://d17h27t6h515a5.cloudfront.net/topher/2017/April/58ffd974_-intro-creampie/-intro-creampie.mp4</string>
 
-    <string name="media_url_mp3">http://storage.googleapis.com/exoplayer-test-media-0/play.mp3</string>
-    <string name="media_url_mp4">http://download.blender.org/peach/bigbuckbunny_movies/BigBuckBunny_320x180.mp4</string>
-    <string name="media_url_dash"><![CDATA[http://www.youtube.com/api/manifest/dash/id/bf5bb2419360daf1/source/youtube?as=fmp4_audio_clear,fmp4_sd_hd_clear&sparams=ip,ipbits,expire,source,id,as&ip=0.0.0.0&ipbits=0&expire=19000000000&signature=51AF5F39AB0CEC3E5497CD9C900EBFEAECCCB5C7.8506521BFC350652163895D4C26DEE124209AA9E&key=ik0]]></string>
-    <string name="recipe_image_desc">Recipe Image Description</string>
+   <string name="recipe_image_desc">Recipe Image Description</string>
     <string name="step">Step 1</string>
 
     <string name="loading_data_error">Requested data not found in database</string>
@@ -28,15 +23,12 @@
     (<xliff:g id="quantity">%s</xliff:g> <xliff:g id="measure">%s</xliff:g>)
   </string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="appwidget_text">EXAMPLE</string>
-    <string name="configure">Configure</string>
     <string name="add_widget">Add widget</string>
     <string name="ingredient_no">12 Ingredients</string>
     <string name="pref_recipe_name">pref_recipe</string>
     <string name="baking_recipes">Baking Recipes</string>
     <string name="ingredient_in_widget">Show Recipe Ingredients in Widget</string>
     <string name="pref_recipe_ingredients">pref_recipe_ingredients</string>
+    <string name="add_widget_message">Please Long Press on a recipe to it to the Widget</string>
 
 </resources>

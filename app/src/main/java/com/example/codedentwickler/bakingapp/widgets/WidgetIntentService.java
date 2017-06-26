@@ -73,8 +73,6 @@ public class WidgetIntentService extends RemoteViewsService {
         @Override
         public RemoteViews getViewAt(int position) {
 
-            Timber.d("Get View At Position %d was called ", position);
-
 
             RemoteViews remoteViews = new RemoteViews(mContext.getPackageName(),
                     R.layout.widget_list_item);
@@ -90,7 +88,6 @@ public class WidgetIntentService extends RemoteViewsService {
                                 + " " +
                                 mCursor.getString(mCursor.getColumnIndex(Entry.COLUMN_NAME_MEASURE));
 
-                Timber.d("Current Ingredient measure: "+measure);
                 remoteViews.setTextViewText(R.id.widget_ingredient_measure, measure);
             }
 
