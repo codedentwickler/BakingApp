@@ -11,7 +11,7 @@ import java.util.List;
  * Created by codedentwickler on 6/15/17.
  */
 
-class RecipeDetailsContract {
+interface RecipeDetailsContract {
 
     interface View extends MvpView {
 

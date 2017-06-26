@@ -3,6 +3,7 @@
     package="com.example.codedentwickler.bakingapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".BakingApp"
         android:allowBackup="true"
@@ -12,23 +13,43 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:launchMode="singleTop"
-            android:name=".presentation.recipe_list.RecipeListActivity">
+            android:label="@string/baking_recipes"
+            android:name=".presentation.recipe_list.RecipeListActivity"
+            android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
 
-        <activity android:name=".presentation.recipe_details.RecipeDetailsActivity"
+        </activity>
+        <activity
+            android:name=".presentation.recipe_details.RecipeDetailsActivity"
             android:parentActivityName=".presentation.recipe_list.RecipeListActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".presentation.recipe_list.RecipeListActivity"/>
+                android:value=".presentation.recipe_list.RecipeListActivity" />
         </activity>
-
         <activity android:name=".presentation.recipe_step.RecipeStepActivity" />
+
+        <receiver android:name=".widgets.IngredientsWidgetProvider">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/ingredients_widget_provider_info" />
+        </receiver>
+
+        <service android:name=".widgets.WidgetIntentService"
+            android:permission="android.permission.BIND_REMOTEVIEWS"/>
+
+        <provider
+            android:authorities="com.example.codedentwickler.bakingapp"
+            android:name=".data.local.provider.IngredientsProvider"
+            android:exported="true"/>
+
     </application>
 
 </manifest>

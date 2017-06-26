@@ -18,7 +18,7 @@
 
     <string name="recipe_step_tab_label">Step: <xliff:g id="count">%d</xliff:g></string>
 
-    <string name="recipe_list_servings_text">Servings: %d </string>
+    <string name="recipe_list_ingredients_text">Ingredients: %d </string>
 
     <string name="ingredients_header"><b>List Of Ingredients :</b></string>
 
@@ -30,5 +30,13 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="configure">Configure</string>
+    <string name="add_widget">Add widget</string>
+    <string name="ingredient_no">12 Ingredients</string>
+    <string name="pref_recipe_name">pref_recipe</string>
+    <string name="baking_recipes">Baking Recipes</string>
+    <string name="ingredient_in_widget">Show Recipe Ingredients in Widget</string>
+    <string name="pref_recipe_ingredients">pref_recipe_ingredients</string>
 
 </resources>

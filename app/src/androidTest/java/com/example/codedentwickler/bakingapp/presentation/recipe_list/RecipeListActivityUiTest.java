@@ -28,6 +28,13 @@ public class RecipeListActivityUiTest {
             new ActivityTestRule<>(RecipeListActivity.class);
 
     @Test
+    public void onRecipeListActivityOpen_displayRecyclerView(){
+
+        // Check that the Recycler View is  displayed
+        onView(withId(R.id.recipe_list)).check(matches(isDisplayed()));
+    }
+
+    @Test
     public void clickRecipeListItem_openRecipeDetailsActivity() {
 
         onView(withId(R.id.recipe_list))
@@ -35,7 +42,5 @@ public class RecipeListActivityUiTest {
 
         onView(withId(R.id.recipe_details_ingredients))
                 .check(matches(isDisplayed()));
-
     }
-
 }

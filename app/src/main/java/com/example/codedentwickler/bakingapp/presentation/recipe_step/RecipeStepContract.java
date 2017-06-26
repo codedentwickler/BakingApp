@@ -6,7 +6,7 @@ import com.example.codedentwickler.bakingapp.presentation.base.MvpView;
 
 import java.util.List;
 
-class RecipeStepContract {
+interface RecipeStepContract {
 
   interface View extends MvpView {
 

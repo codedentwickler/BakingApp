@@ -56,5 +56,14 @@ public final class CommonUtils {
         sb.setSpan(style, start, end, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
         textView.setText(sb);
     }
+
+    public static SpannableStringBuilder setTextWithSpan(String fullText, String styledText, StyleSpan style) {
+        SpannableStringBuilder sb = new SpannableStringBuilder(fullText);
+        int start = fullText.indexOf(styledText);
+        int end = start + styledText.length();
+        sb.setSpan(style, start, end, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+
+        return sb;
+    }
  }
 

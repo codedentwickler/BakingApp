@@ -13,6 +13,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.codedentwickler.bakingapp.R;
 import com.example.codedentwickler.bakingapp.data.model.Recipe;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -40,6 +41,11 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Vi
     void replaceData(List<Recipe> recipes) {
         setRecipes(recipes);
         notifyDataSetChanged();
+    }
+
+    List<Recipe> getRecipes() {
+        if (!recipes.isEmpty()) return recipes;
+        return new ArrayList<>();
     }
 
     @Override
@@ -70,12 +76,10 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Vi
 
         @BindView(R.id.list_recipe_image)
         ImageView iconImageView;
-
         @BindView(R.id.list_recipe_name)
         TextView nameTextView;
-
-        @BindView(R.id.list_recipe_servings)
-                TextView servingsTextView;
+        @BindView(R.id.list_recipe_no_of_ingredients)
+        TextView noOfIngredientTextView;
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -93,10 +97,15 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Vi
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(iconImageView);
 
-            String servings = itemView.getContext().getString(R.string.recipe_list_servings_text,recipe.getServings());
+            String noOfIngredients = itemView.getContext().getString(
+                    R.string.recipe_list_ingredients_text,recipe.getIngredients().size());
 
             nameTextView.setText(recipe.getName());
-            servingsTextView.setText(servings);
+            noOfIngredientTextView.setText(noOfIngredients);
+
+
+            itemView.setOnLongClickListener(
+                    v -> itemClickListener.onRecipeLongClicked(itemView, ViewHolder.this.getAdapterPosition()));
 
             itemView.setOnClickListener(v -> itemClickListener.onRecipeClicked(recipe));
         }
@@ -104,5 +113,7 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Vi
 
     interface OnItemClickListener {
         void onRecipeClicked(Recipe recipe);
+
+        boolean onRecipeLongClicked(View addWidget, int adapterPosition);
     }
 }

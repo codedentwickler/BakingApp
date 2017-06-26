@@ -19,6 +19,9 @@ public class RecipeStepActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe_step);
 
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         Recipe recipe = getIntent().getParcelableExtra(RECIPE_KEY);
         Bundle bundle = new Bundle();
         bundle.putParcelable(RECIPE_KEY, recipe);

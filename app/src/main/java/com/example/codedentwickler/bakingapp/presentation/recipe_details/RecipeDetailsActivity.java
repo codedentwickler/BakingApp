@@ -24,7 +24,8 @@ public class RecipeDetailsActivity extends BaseActivity {
         RecipeDetailsContract.Presenter mPresenter = new RecipeDetailsPresenter(recipe);
 
         RecipeDetailsFragment fragment =
-                (RecipeDetailsFragment) getSupportFragmentManager().findFragmentById(R.id.content_frame_recipe_details);
+                (RecipeDetailsFragment) getSupportFragmentManager()
+                        .findFragmentById(R.id.content_frame_recipe_details);
 
         if (fragment == null) {
 
