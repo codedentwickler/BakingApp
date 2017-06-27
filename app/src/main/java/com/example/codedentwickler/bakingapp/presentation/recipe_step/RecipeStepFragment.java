@@ -12,8 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.codedentwickler.bakingapp.R;
-import com.example.codedentwickler.bakingapp.data.model.Recipe;
-import com.example.codedentwickler.bakingapp.data.model.Step;
+import com.example.codedentwickler.bakingapp.data.remote.model.Recipe;
+import com.example.codedentwickler.bakingapp.data.remote.model.Step;
 import com.example.codedentwickler.bakingapp.presentation.base.BaseFragment;
 
 import java.util.ArrayList;

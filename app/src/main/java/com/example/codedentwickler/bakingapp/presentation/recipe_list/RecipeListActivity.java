@@ -21,8 +21,8 @@ import android.view.View;
 import com.example.codedentwickler.bakingapp.BuildConfig;
 import com.example.codedentwickler.bakingapp.R;
 import com.example.codedentwickler.bakingapp.data.local.provider.IngredientContract.Entry;
-import com.example.codedentwickler.bakingapp.data.model.Ingredient;
-import com.example.codedentwickler.bakingapp.data.model.Recipe;
+import com.example.codedentwickler.bakingapp.data.remote.model.Ingredient;
+import com.example.codedentwickler.bakingapp.data.remote.model.Recipe;
 import com.example.codedentwickler.bakingapp.injection.Injection;
 import com.example.codedentwickler.bakingapp.presentation.base.BaseActivity;
 import com.example.codedentwickler.bakingapp.presentation.recipe_details.RecipeDetailsActivity;
@@ -62,7 +62,7 @@ public class RecipeListActivity extends BaseActivity
         sharedPreferences = getSharedPreferences(BuildConfig.APPLICATION_ID, Context.MODE_PRIVATE);
 
         mPresenter = new RecipeListPresenter(
-                Injection.provideRecipeRepo(getApplicationContext()),
+                Injection.provideRecipeRepo(),
                 Injection.provideSchedulerProvider()
         );
         mPresenter.attachView(this);

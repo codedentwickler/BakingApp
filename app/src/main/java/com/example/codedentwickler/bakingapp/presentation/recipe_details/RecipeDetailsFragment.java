@@ -15,9 +15,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.codedentwickler.bakingapp.R;
-import com.example.codedentwickler.bakingapp.data.model.Ingredient;
-import com.example.codedentwickler.bakingapp.data.model.Recipe;
-import com.example.codedentwickler.bakingapp.data.model.Step;
+import com.example.codedentwickler.bakingapp.data.remote.model.Ingredient;
+import com.example.codedentwickler.bakingapp.data.remote.model.Recipe;
+import com.example.codedentwickler.bakingapp.data.remote.model.Step;
 import com.example.codedentwickler.bakingapp.presentation.base.BaseFragment;
 import com.example.codedentwickler.bakingapp.presentation.recipe_step.RecipeStepActivity;
 import com.example.codedentwickler.bakingapp.presentation.recipe_step.SingleStepFragment;

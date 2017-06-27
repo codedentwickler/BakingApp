@@ -1,17 +1,13 @@
 package com.example.codedentwickler.bakingapp.presentation.recipe_list;
 
-import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.codedentwickler.bakingapp.R;
-import com.example.codedentwickler.bakingapp.data.model.Recipe;
+import com.example.codedentwickler.bakingapp.data.remote.model.Recipe;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -74,8 +70,6 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Vi
 
     static class ViewHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.list_recipe_image)
-        ImageView iconImageView;
         @BindView(R.id.list_recipe_name)
         TextView nameTextView;
         @BindView(R.id.list_recipe_no_of_ingredients)
@@ -88,14 +82,6 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Vi
         }
 
         void bind(final Recipe recipe,final OnItemClickListener itemClickListener) {
-
-            Uri uri = (Uri.parse("file:///android_asset")).buildUpon()
-                    .appendEncodedPath(recipe.getImage()).build();
-
-            Glide.with(itemView.getContext())
-                    .load(uri)
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .into(iconImageView);
 
             String noOfIngredients = itemView.getContext().getString(
                     R.string.recipe_list_ingredients_text,recipe.getIngredients().size());

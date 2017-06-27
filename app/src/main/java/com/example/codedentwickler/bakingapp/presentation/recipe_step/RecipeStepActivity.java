@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.codedentwickler.bakingapp.R;
-import com.example.codedentwickler.bakingapp.data.model.Recipe;
+import com.example.codedentwickler.bakingapp.data.remote.model.Recipe;
 import com.example.codedentwickler.bakingapp.utils.ActivityUtils;
 
 public class RecipeStepActivity extends AppCompatActivity {

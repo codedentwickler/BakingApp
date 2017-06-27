@@ -9,7 +9,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.codedentwickler.bakingapp.R;
-import com.example.codedentwickler.bakingapp.data.model.Step;
+import com.example.codedentwickler.bakingapp.data.remote.model.Step;
 
 import java.util.List;
 import java.util.Locale;

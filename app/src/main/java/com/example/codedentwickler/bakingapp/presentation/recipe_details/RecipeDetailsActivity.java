@@ -3,7 +3,7 @@ package com.example.codedentwickler.bakingapp.presentation.recipe_details;
 import android.os.Bundle;
 
 import com.example.codedentwickler.bakingapp.R;
-import com.example.codedentwickler.bakingapp.data.model.Recipe;
+import com.example.codedentwickler.bakingapp.data.remote.model.Recipe;
 import com.example.codedentwickler.bakingapp.presentation.base.BaseActivity;
 import com.example.codedentwickler.bakingapp.utils.ActivityUtils;
 

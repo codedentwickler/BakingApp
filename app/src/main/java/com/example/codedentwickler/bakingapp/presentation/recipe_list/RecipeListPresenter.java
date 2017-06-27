@@ -1,8 +1,8 @@
 package com.example.codedentwickler.bakingapp.presentation.recipe_list;
 
 import com.example.codedentwickler.bakingapp.RxUtils.schedulers.BaseSchedulerProvider;
-import com.example.codedentwickler.bakingapp.data.local.RecipeRepo;
-import com.example.codedentwickler.bakingapp.data.model.Recipe;
+import com.example.codedentwickler.bakingapp.data.remote.RecipeRepo;
+import com.example.codedentwickler.bakingapp.data.remote.model.Recipe;
 import com.example.codedentwickler.bakingapp.presentation.base.BasePresenter;
 
 import java.util.List;
@@ -28,7 +28,6 @@ public class RecipeListPresenter extends BasePresenter<RecipeListContract.View>
 
     @Override
     public void loadRecipes() {
-
         checkViewAttached();
         getView().showLoading();
         mRecipeRepo.getRecipes()

@@ -7,7 +7,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.example.codedentwickler.bakingapp.R;
-import com.example.codedentwickler.bakingapp.data.model.Step;
+import com.example.codedentwickler.bakingapp.data.remote.model.Step;
 
 import java.util.List;
 import java.util.Locale;

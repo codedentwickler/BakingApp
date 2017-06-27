@@ -1,4 +1,4 @@
-package com.example.codedentwickler.bakingapp.data.model;
+package com.example.codedentwickler.bakingapp.data.remote.model;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

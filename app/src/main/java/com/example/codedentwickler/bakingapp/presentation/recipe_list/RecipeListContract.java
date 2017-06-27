@@ -1,6 +1,6 @@
 package com.example.codedentwickler.bakingapp.presentation.recipe_list;
 
-import com.example.codedentwickler.bakingapp.data.model.Recipe;
+import com.example.codedentwickler.bakingapp.data.remote.model.Recipe;
 import com.example.codedentwickler.bakingapp.presentation.base.MvpPresenter;
 import com.example.codedentwickler.bakingapp.presentation.base.MvpView;
 

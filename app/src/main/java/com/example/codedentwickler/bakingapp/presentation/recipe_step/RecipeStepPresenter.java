@@ -1,6 +1,6 @@
 package com.example.codedentwickler.bakingapp.presentation.recipe_step;
 
-import com.example.codedentwickler.bakingapp.data.model.Recipe;
+import com.example.codedentwickler.bakingapp.data.remote.model.Recipe;
 import com.example.codedentwickler.bakingapp.presentation.base.BasePresenter;
 
 import static com.google.common.base.Preconditions.checkNotNull;

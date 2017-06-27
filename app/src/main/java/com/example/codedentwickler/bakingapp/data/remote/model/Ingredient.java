@@ -1,5 +1,5 @@
 
-package com.example.codedentwickler.bakingapp.data.model;
+package com.example.codedentwickler.bakingapp.data.remote.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
