@@ -42,13 +42,13 @@ public class Ingredient implements Parcelable
 
     /**
      * No args constructor for use in serialization
-     * 
+     *
      */
     public Ingredient() {
     }
 
     /**
-     * 
+     *
      * @param measure
      * @param ingredient
      * @param quantity
