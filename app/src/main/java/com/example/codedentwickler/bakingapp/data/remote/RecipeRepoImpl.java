@@ -1,5 +1,6 @@
 package com.example.codedentwickler.bakingapp.data.remote;
 
+import com.example.codedentwickler.bakingapp.data.remote.model.ApiService;
 import com.example.codedentwickler.bakingapp.data.remote.model.Recipe;
 
 import java.io.IOException;

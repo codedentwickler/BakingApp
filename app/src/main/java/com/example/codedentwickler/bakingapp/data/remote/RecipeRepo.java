@@ -11,7 +11,5 @@ import rx.Observable;
  */
 
 public interface RecipeRepo {
-
     Observable<List<Recipe>> getRecipes();
-
 }
