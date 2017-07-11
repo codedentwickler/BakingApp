@@ -94,7 +94,7 @@ public class RecipeStepFragment extends BaseFragment
         mPresenter = new RecipeStepPresenter(mCurrentRecipe);
 
         viewPagerAdapter = new RecipeStepPageAdapter(getActivity().getSupportFragmentManager(),
-                new ArrayList<>(0), getContext());
+                new ArrayList<Step>(0), getContext());
 
         stepViewPager.setAdapter(viewPagerAdapter);
         setUpViewPagerListener();

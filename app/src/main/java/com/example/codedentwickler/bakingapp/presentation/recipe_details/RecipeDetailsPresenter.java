@@ -9,7 +9,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
  * Created by codedentwickler on 6/15/17.
  */
 
-public class RecipeDetailsPresenter extends BasePresenter<RecipeDetailsContract.View>
+class RecipeDetailsPresenter extends BasePresenter<RecipeDetailsContract.View>
         implements RecipeDetailsContract.Presenter {
 
     private Recipe mCurrentRecipe;

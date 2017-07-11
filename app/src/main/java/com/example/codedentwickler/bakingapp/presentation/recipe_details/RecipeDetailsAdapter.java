@@ -24,7 +24,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
  * Created by codedentwickler on 6/15/17.
  */
 
-public class RecipeDetailsAdapter extends RecyclerView.Adapter<RecipeDetailsAdapter.ViewHolder> {
+class RecipeDetailsAdapter extends RecyclerView.Adapter<RecipeDetailsAdapter.ViewHolder> {
 
     private final OnStepClickListener mStepClickListener;
     private List<Step> steps;
@@ -110,10 +110,13 @@ public class RecipeDetailsAdapter extends RecyclerView.Adapter<RecipeDetailsAdap
             } else {
                 stepItemLayout.setBackgroundColor(normalItemBackground);
             }
-            itemView.setOnClickListener(v -> {
-                currentPosition = currentId;
-                itemClickListener.onStepClicked(step);
-                notifyDataSetChanged();
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    currentPosition = currentId;
+                    itemClickListener.onStepClicked(step);
+                    notifyDataSetChanged();
+                }
             });
         }
     }

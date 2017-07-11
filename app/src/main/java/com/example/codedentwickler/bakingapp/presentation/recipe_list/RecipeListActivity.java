@@ -10,12 +10,17 @@ import android.database.Cursor;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.annotation.VisibleForTesting;
+import android.support.test.espresso.IdlingResource;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.text.style.StyleSpan;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.example.codedentwickler.bakingapp.BuildConfig;
@@ -23,6 +28,7 @@ import com.example.codedentwickler.bakingapp.R;
 import com.example.codedentwickler.bakingapp.data.local.provider.IngredientContract.Entry;
 import com.example.codedentwickler.bakingapp.data.remote.model.Ingredient;
 import com.example.codedentwickler.bakingapp.data.remote.model.Recipe;
+import com.example.codedentwickler.bakingapp.idlingresource.RecipesIdlingResource;
 import com.example.codedentwickler.bakingapp.injection.Injection;
 import com.example.codedentwickler.bakingapp.presentation.base.BaseActivity;
 import com.example.codedentwickler.bakingapp.presentation.recipe_details.RecipeDetailsActivity;
@@ -42,7 +48,8 @@ public class RecipeListActivity extends BaseActivity
 
     public static final String RECIPE_KEY = "RECIPE_KEY";
 
-    private int appWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID;
+    @Nullable
+    private RecipesIdlingResource idlingResource;
 
     @BindView(R.id.recipe_list)
     RecyclerView mRecipeCards;
@@ -67,7 +74,7 @@ public class RecipeListActivity extends BaseActivity
         );
         mPresenter.attachView(this);
 
-        mRecipeListAdapter = new RecipeListAdapter(new ArrayList<>(0),
+        mRecipeListAdapter = new RecipeListAdapter(new ArrayList<Recipe>(0),
                 new RecipeListAdapter.OnItemClickListener() {
                     @Override
                     public void onRecipeClicked(Recipe recipe) {
@@ -75,18 +82,21 @@ public class RecipeListActivity extends BaseActivity
                     }
 
                     @Override
-                    public boolean onRecipeLongClicked(View view, int adapterPosition) {
+                    public boolean onRecipeLongClicked(View view, final int adapterPosition) {
                         final PopupMenu popupMenu = new PopupMenu(RecipeListActivity.this, view);
                         popupMenu.inflate(R.menu.widget);
-                        popupMenu.setOnMenuItemClickListener(item -> {
-                            switch (item.getItemId()) {
-                                case R.id.menu_recipe_ingredient:
-                                    Timber.d("Add Widget at " +adapterPosition);
-                                    showIngredientsInWidget(adapterPosition);
-                                    return true;
+                        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                            @Override
+                            public boolean onMenuItemClick(MenuItem item) {
+                                switch (item.getItemId()) {
+                                    case R.id.menu_recipe_ingredient:
+                                        Timber.d("Add Widget at " + adapterPosition);
+                                        showIngredientsInWidget(adapterPosition);
+                                        return true;
 
-                                default:
-                                    return false;
+                                    default:
+                                        return false;
+                                }
                             }
                         });
                         popupMenu.show();
@@ -97,7 +107,16 @@ public class RecipeListActivity extends BaseActivity
 
         setUpRecipeRecycler();
 
-        mPresenter.loadRecipes();
+        mPresenter.loadRecipes(idlingResource);
+    }
+
+    @VisibleForTesting
+    @NonNull
+    public IdlingResource getIdlingResource() {
+        if (idlingResource == null) {
+            idlingResource = new RecipesIdlingResource();
+        }
+        return idlingResource;
     }
 
     @Override

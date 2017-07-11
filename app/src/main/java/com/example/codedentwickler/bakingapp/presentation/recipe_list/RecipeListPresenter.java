@@ -3,18 +3,20 @@ package com.example.codedentwickler.bakingapp.presentation.recipe_list;
 import com.example.codedentwickler.bakingapp.RxUtils.schedulers.BaseSchedulerProvider;
 import com.example.codedentwickler.bakingapp.data.remote.RecipeRepo;
 import com.example.codedentwickler.bakingapp.data.remote.model.Recipe;
+import com.example.codedentwickler.bakingapp.idlingresource.RecipesIdlingResource;
 import com.example.codedentwickler.bakingapp.presentation.base.BasePresenter;
 
 import java.util.List;
 
 import rx.Subscriber;
+import rx.functions.Action0;
 import timber.log.Timber;
 
 /**
  * Created by codedentwickler on 6/10/17.
  */
 
-public class RecipeListPresenter extends BasePresenter<RecipeListContract.View>
+class RecipeListPresenter extends BasePresenter<RecipeListContract.View>
         implements RecipeListContract.Presenter{
 
     private final RecipeRepo mRecipeRepo;
@@ -27,10 +29,16 @@ public class RecipeListPresenter extends BasePresenter<RecipeListContract.View>
 
 
     @Override
-    public void loadRecipes() {
+    public void loadRecipes(final RecipesIdlingResource idlingResource) {
         checkViewAttached();
         getView().showLoading();
         mRecipeRepo.getRecipes()
+                .doOnSubscribe(new Action0() {
+                    @Override
+                    public void call() {
+                        if (idlingResource != null) idlingResource.setIdleState(false);
+                    }
+                })
                 .subscribeOn(mSchedulerProvider.computation())
                 .observeOn(mSchedulerProvider.ui())
                 .subscribe(new Subscriber<List<Recipe>>() {
@@ -47,6 +55,7 @@ public class RecipeListPresenter extends BasePresenter<RecipeListContract.View>
                     @Override
                     public void onNext(List<Recipe> recipes) {
                         Timber.d(recipes.toString());
+                        if (idlingResource != null) idlingResource.setIdleState(true);
                         getView().hideLoading();
                         getView().showRecipes(recipes);
                     }

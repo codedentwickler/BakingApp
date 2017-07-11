@@ -94,8 +94,13 @@ public class RecipeDetailsFragment extends BaseFragment
 
         setUnBinder(ButterKnife.bind(this,view));
 
-        mStepsAdapter = new RecipeDetailsAdapter(new ArrayList<>(0),
-                step -> mPresenter.navigateToStepDetails(step.getId()));
+        mStepsAdapter = new RecipeDetailsAdapter(new ArrayList<Step>(0),
+                new RecipeDetailsAdapter.OnStepClickListener() {
+                    @Override
+                    public void onStepClicked(Step step) {
+                        mPresenter.navigateToStepDetails(step.getId());
+                    }
+                });
         setUpRecyclerView();
 
         return view;

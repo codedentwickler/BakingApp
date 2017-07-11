@@ -3,10 +3,10 @@ package com.example.codedentwickler.bakingapp.data.remote;
 import com.example.codedentwickler.bakingapp.data.remote.model.ApiService;
 import com.example.codedentwickler.bakingapp.data.remote.model.Recipe;
 
-import java.io.IOException;
 import java.util.List;
 
 import rx.Observable;
+import rx.functions.Func0;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -25,13 +25,11 @@ public class RecipeRepoImpl implements RecipeRepo {
     @Override
     public Observable<List<Recipe>> getRecipes() {
 
-        return Observable.defer(apiService::fetchRecipes)
-
-                .retryWhen(observable -> observable.flatMap(o -> {
-                    if (o instanceof IOException) {
-                        return Observable.just(null);
-                    }
-                    return Observable.error(o);
-                }));
+        return Observable.defer(new Func0<Observable<List<Recipe>>>() {
+            @Override
+            public Observable<List<Recipe>> call() {
+                return apiService.fetchRecipes();
+            }
+        });
     }
 }

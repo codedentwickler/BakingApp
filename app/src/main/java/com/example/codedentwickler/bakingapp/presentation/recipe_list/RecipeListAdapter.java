@@ -21,7 +21,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
  * Created by codedentwickler on 6/9/17.
  */
 
-public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.ViewHolder> {
+class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.ViewHolder> {
 
     private final OnItemClickListener mItemClickListener;
     private List<Recipe> recipes;
@@ -91,9 +91,19 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Vi
 
 
             itemView.setOnLongClickListener(
-                    v -> itemClickListener.onRecipeLongClicked(itemView, ViewHolder.this.getAdapterPosition()));
+                    new View.OnLongClickListener() {
+                        @Override
+                        public boolean onLongClick(View v) {
+                            return itemClickListener.onRecipeLongClicked(itemView, ViewHolder.this.getAdapterPosition());
+                        }
+                    });
 
-            itemView.setOnClickListener(v -> itemClickListener.onRecipeClicked(recipe));
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    itemClickListener.onRecipeClicked(recipe);
+                }
+            });
         }
     }
 
