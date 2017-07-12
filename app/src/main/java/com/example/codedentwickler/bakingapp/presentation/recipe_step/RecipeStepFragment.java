@@ -74,9 +74,10 @@ public class RecipeStepFragment extends BaseFragment
         super.onSaveInstanceState(outState);
     }
 
-    public static RecipeStepFragment newInstance(Recipe recipe) {
+    public static RecipeStepFragment newInstance(Recipe recipe, int stepId) {
         Bundle bundle = new Bundle(1);
         bundle.putParcelable(RECIPE_KEY, recipe);
+        bundle.putInt(STEP_KEY, stepId);
         RecipeStepFragment fragment = new RecipeStepFragment();
         fragment.setArguments(bundle);
 

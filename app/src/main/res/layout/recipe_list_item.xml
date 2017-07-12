@@ -11,6 +11,20 @@ tools:targetApi="lollipop"
     >
 
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        >
+
+        <ImageView
+            android:id="@+id/recipe_thumbnail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:contentDescription="@string/recipe_image_desc"
+            />
+
+    <LinearLayout
         android:id="@+id/content_recipe"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -35,6 +49,8 @@ tools:targetApi="lollipop"
             android:textColor="@color/colorSecondaryText"
             android:textSize="@dimen/material_card_title_block_subtitle_text_size"
             tools:text="@string/recipe_list_ingredients_text"/>
+
+    </LinearLayout>
 
     </LinearLayout>
 

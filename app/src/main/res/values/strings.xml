@@ -9,7 +9,7 @@
    <string name="recipe_image_desc">Recipe Image Description</string>
     <string name="step">Step 1</string>
 
-    <string name="loading_data_error">Requested data not found in database</string>
+    <string name="loading_data_error">Requested data not found</string>
 
     <string name="recipe_step_tab_label">Step: <xliff:g id="count">%d</xliff:g></string>
 

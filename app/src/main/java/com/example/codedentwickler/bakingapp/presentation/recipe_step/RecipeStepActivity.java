@@ -23,6 +23,7 @@ public class RecipeStepActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Recipe recipe = getIntent().getParcelableExtra(RECIPE_KEY);
+        int stepId = getIntent().getIntExtra(STEP_KEY, 0);
         Bundle bundle = new Bundle();
         bundle.putParcelable(RECIPE_KEY, recipe);
 
@@ -32,7 +33,7 @@ public class RecipeStepActivity extends AppCompatActivity {
 
         if (stepFragment == null) {
 
-            stepFragment = RecipeStepFragment.newInstance(recipe);
+            stepFragment = RecipeStepFragment.newInstance(recipe, stepId);
 
             ActivityUtils.addFragmentToActivity(
                     getSupportFragmentManager(),

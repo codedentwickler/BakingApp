@@ -4,8 +4,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.codedentwickler.bakingapp.R;
 import com.example.codedentwickler.bakingapp.data.remote.model.Recipe;
 
@@ -75,6 +77,9 @@ class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.ViewHolde
         @BindView(R.id.list_recipe_no_of_ingredients)
         TextView noOfIngredientTextView;
 
+        @BindView(R.id.recipe_thumbnail)
+        ImageView recipeThumbnailImageView;
+
         ViewHolder(View itemView) {
             super(itemView);
 
@@ -88,6 +93,15 @@ class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.ViewHolde
 
             nameTextView.setText(recipe.getName());
             noOfIngredientTextView.setText(noOfIngredients);
+
+            if (!recipe.getImage().isEmpty()) {
+                recipeThumbnailImageView.setVisibility(View.VISIBLE);
+
+                Glide.with(itemView.getContext())
+                        .load(recipe.getImage())
+                        .centerCrop()
+                        .into(recipeThumbnailImageView);
+            }
 
 
             itemView.setOnLongClickListener(
