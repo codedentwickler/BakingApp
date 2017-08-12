@@ -36,6 +36,17 @@ Then Sync project so gradle can download everything you need
 * Timber
 * Material Values
 
+![Phone](https://user-images.githubusercontent.com/18694890/29238202-9b8445f6-7f27-11e7-93e1-f4554db010d7.png)  
+![Phone](https://user-images.githubusercontent.com/18694890/29238200-9b742e82-7f27-11e7-80d9-20b8e3c37013.png)
+
+![Phone](https://user-images.githubusercontent.com/18694890/29238198-9b5d7264-7f27-11e7-9b38-885aab94a62a.png)
+
+![Phone|Landscape](https://user-images.githubusercontent.com/18694890/29238201-9b7d701e-7f27-11e7-81f9-896427ec5f08.png)
+
+![Tablet](https://user-images.githubusercontent.com/18694890/29238203-9b8e1018-7f27-11e7-9193-e8f64bf3e874.png)
+
+![Widget](https://user-images.githubusercontent.com/18694890/29238199-9b6b47d6-7f27-11e7-9d31-578897787339.png)
+
 
 ### Contributors on GitHub
 Please feel free to make a pull request. There is so much to improve on.
