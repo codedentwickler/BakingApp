@@ -55,8 +55,7 @@ Also few tests have been written, and hopefully we can have more from your contr
 
 #### Developer
 * e-mail : kanyinsolafapohunda@gmail.com
-* Twitter: [@codedentwickler](https://twitter.com/kanyinsola_f "kanyinsola_f on twitter")
-
+* Twitter: [@kanyinsola_f](https://twitter.com/kanyinsola_f "kanyinsola_f on twitter")
 
 ##### LICENSE
 
