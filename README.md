@@ -1,5 +1,5 @@
 # BakingApp
-A Functioning Android App which I built for Udacity Associate Android Developer FastTrack program sponsored by Andela and supported by Google. 
+A Functioning Android App which I built as one of my project during my Udacity Associate Android Developer FastTrack program
 
 ## Feature
 * This app implements the MVP pattern, RxJava, Dependency Injection(Custom).
@@ -55,7 +55,7 @@ Also few tests have been written, and hopefully we can have more from your contr
 
 #### Developer
 * e-mail : kanyinsolafapohunda@gmail.com
-* Twitter: [@codedentwickler](https://twitter.com/codedentwickler "codedentwickler on twitter")
+* Twitter: [@codedentwickler](https://twitter.com/kanyinsola_f "kanyinsola_f on twitter")
 
 
 ##### LICENSE
